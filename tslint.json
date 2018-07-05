@@ -8,7 +8,7 @@
         "quotemark":[true,"single","avoid-escape"],
         "no-duplicate-variable": [true,"check-parameters"],
         "no-console": false,
-        "no-shadowed-variable":[true,{"temporalDeadZone": false}]
+        "no-shadowed-variable":[false,{"temporalDeadZone": false}]
     },
     "rulesDirectory": []
 }

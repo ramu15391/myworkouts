@@ -1,29 +1,32 @@
 import React from 'react';
+import ReactDOM from 'react-dom'
+//import styled from 'styled-components'
 
-const single = 'single';
+// const single = 'single';
 
-const double = "dou'b'le";
+// const double = "dou'b'le";
 
-const backtick = `bacfktick`;
+// const backtick = `bacfktick`;
 
-const semispace= 'semicolon space' ; 
+// const semispace= 'semicolon space' ; 
 
-const add = (arg) => {
-    console.log("test") ; 
-}
+// const add = (arg) => {
+//     console.log("test") ; 
+// }
 
-class demo {
+
+
+
+class Demo extends React.Component {
 	render() { 
 		return (
-			<React.Fragment><div>test</div></React.Fragment>
+			<React.Fragment><div>"test"</div></React.Fragment>
 		);
 	}   
 }
 
+ReactDOM.render(<Demo />, document.getElementById('app'));
 
-function newFunction() {
-    return "semicolon";
-}
 /*Node	 Browser
  Node doesn’t have a predefined “window” object cause it doesn’t have a window to draw anything.
  “window” is a predefined global object which has functions and attributes, that have to deal with window that has been drawn.

@@ -1,30 +1,52 @@
-import React from 'react';
-import ReactDOM from 'react-dom'
-//import styled from 'styled-components'
+// import React from 'react';
+// import ReactDOM from 'react-dom'
+// import styled from 'styled-components'
 
-// const single = 'single';
+// // const single = 'single';
 
-// const double = "dou'b'le";
+// // const double = "dou'b'le";
 
-// const backtick = `bacfktick`;
+// // const backtick = `bacfktick`;
 
-// const semispace= 'semicolon space' ; 
+// // const semispace= 'semicolon space' ; 
 
-// const add = (arg) => {
-//     console.log("test") ; 
+// // const add = (arg) => {
+// //     console.log("test") ; 
+// // }
+
+// const styles = styled.todo`
+//     background: "red";
+// `
+
+// @styles()
+// class Demo extends React.Component {
+// 	render() { 
+// 		return (
+// 			<React.Fragment><div>"test"</div></React.Fragment>
+// 		);
+// 	}   
 // }
 
+// ReactDOM.render(<Demo />, document.getElementById('app'));
 
 
 
+import React from 'react';
+import ReactDOM from 'react-dom'
+import styled from 'styled-components'
+const styles = styled.global`
+	.red {
+		background: "red";
+	}
+`
+@styles 
 class Demo extends React.Component {
 	render() { 
 		return (
-			<React.Fragment><div>"test"</div></React.Fragment>
+			<React.Fragment><div className="red">"test"</div></React.Fragment>
 		);
 	}   
 }
-
 ReactDOM.render(<Demo />, document.getElementById('app'));
 
 /*Node	 Browser

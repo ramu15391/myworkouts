@@ -10,6 +10,20 @@
 
 * [git configuration](https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/)
 
+* "git merge" used to allow merging two branches that have no common
+   base by default, which led to a brand new history of an existing
+   project created and then get pulled by an unsuspecting maintainer,
+   which allowed an unnecessary parallel history merged into the
+   existing project.  The command has been taught not to allow this by
+   default, with an escape hatch "--allow-unrelated-histories" option
+   to be used in a rare event that merges histories of two projects
+   that started their lives independently.
+
+ * "git pull" has been taught to pass the "--allow-unrelated-histories"
+   option to underlying "git merge".
+   
+  * [git merge two branches](https://github.com/git/git/blob/master/Documentation/RelNotes/2.9.0.txt#L58-L68)
+
 ## what-is-the-temporal-dead-zone
 
 * [what-is-the-temporal-dead-zone](https://stackoverflow.com/questions/33198849/what-is-the-temporal-dead-zone)
@@ -183,3 +197,99 @@ https://scotch.io/
  2. External css File
  3. Modular css ?????
  4. styled components
+
+
+
+Backup for formatting
+
+var databaseUrl = "localhost:27017/local";
+
+var collections = ["user"]
+
+var mongojs = require("mongojs");
+var db = mongojs(databaseUrl, collections);
+
+exports.authenticateUser = function(username,password,response,callback) {
+
+	db.user.find({"username":username,"password":password}, function(err, users) {
+
+		console.log(users);
+
+		if( err || !users) {
+
+			console.log("invalid");
+
+			return callback(err);
+
+		}
+
+		else if(users.length==0)  {
+
+			console.log("invalid length");
+
+			return callback(err);
+
+		 }
+
+		else{
+
+			 return callback(null, "success");
+
+		}
+
+	});
+
+               
+
+}
+
+exports.addUser = function(username, password, address, phone, email, res, callback) {
+
+                db.user.save({
+
+                                "username" : username,
+
+                                "password" : password,
+
+                                "address" : address,
+								
+								"phone" : phone,
+								
+								"email" : email
+
+                }, function(err, saved) {
+
+                                if (err || !saved) {
+
+                                                console.log("User not saved");
+
+                                                return callback(err);
+
+                                } else {
+
+                                                console.log("User saved");
+
+                                                callback(null, saved);
+
+                                }
+
+ 
+
+                });          
+
+}
+
+
+## JSS
+
+ [Styling](https://survivejs.com/react/advanced-techniques/styling-react/)
+
+## decorator:
+ 
+ https://moduscreate.com/blog/using-es2016-decorators-in-react-native/
+
+ #Babel 
+
+ * Babel will look for a .babelrc in the current directory of the file being transpiled. If one does not exist, it will travel up the directory tree until it finds either a .babelrc, or a package.json with a "babel": {} hash within.
+
+* Use "babelrc": false in options to stop lookup behavior, or provide the --no-babelrc CLI flag.

@@ -1,53 +1,20 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom'
-// import styled from 'styled-components'
-
-// // const single = 'single';
-
-// // const double = "dou'b'le";
-
-// // const backtick = `bacfktick`;
-
-// // const semispace= 'semicolon space' ; 
-
-// // const add = (arg) => {
-// //     console.log("test") ; 
-// // }
-
-// const styles = styled.todo`
-//     background: "red";
-// `
-
-// @styles()
-// class Demo extends React.Component {
-// 	render() { 
-// 		return (
-// 			<React.Fragment><div>"test"</div></React.Fragment>
-// 		);
-// 	}   
-// }
-
-// ReactDOM.render(<Demo />, document.getElementById('app'));
-
-
-
 import React from 'react';
 import ReactDOM from 'react-dom'
-import styled from 'styled-components'
-const styles = styled.global`
-	.red {
-		background: "red";
-	}
-`
-@styles 
+
 class Demo extends React.Component {
 	render() { 
 		return (
-			<React.Fragment><div className="red">"test"</div></React.Fragment>
+			<div className="red">{this.props.name}</div>
 		);
 	}   
 }
-ReactDOM.render(<Demo />, document.getElementById('app'));
+var app =(
+  <React.Fragment>
+    <Demo name="rama" />
+    <Demo name="murthi" age="20" />
+  </React.Fragment>
+)
+ReactDOM.render(app, document.getElementById('app'));
 
 /*Node	 Browser
  Node doesn’t have a predefined “window” object cause it doesn’t have a window to draw anything.

@@ -1,5 +1,8 @@
 # myWorkouts
 
+##  semantic version
+* [semantic version](https://semver.org/)
+
 ## readme configuration 
 * [Read me file rules](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code)
 

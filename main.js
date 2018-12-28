@@ -1,20 +1,61 @@
-import React from 'react';
+import React from 'react'
 import ReactDOM from 'react-dom'
+import AppSub from './AppSub/AppSub'
 
 class Demo extends React.Component {
-	render() { 
-		return (
-			<div className="red">{this.props.name}</div>
-		);
-	}   
+	constructor(){
+		super()
+		this.state = {
+			person:[
+				{id:'name1', name:'rama', age:'27'},
+				{id:'name2', name:'ganesh', age:'27'},
+				{id:'name3', name:'sai', age:'27'}
+			],
+			status: false
+		}
+	}
+ 
+	clickHandler(newname) {
+		this.setState({
+			person:[
+				{id:'name1', name: newname, age:'27'},
+				{id:'name2', name:'ganesh', age:'27'},
+				{id:'name3', name:'sai', age:'27'}
+			]
+		}
+		)
+	}
+	changeHandler(event) {
+		this.setState({
+			person:[
+				{ name: event.target.value, age:'27' },
+				{ name:'ganesh', age:'27' }
+			]
+		}
+		)
+	}
+  toggleHandler = () => {
+	  const status = this.state.status;
+	  console.log(status);
+  	this.setState({status: !status})
+  }
+  render() { 
+  	const renderPerson = this.state.person.map(personEl => (<AppSub change={this.changeHandler.bind(this)} name={personEl.name} age= {personEl.age} click={this.clickHandler.bind(this,'AR')}></AppSub>) )
+    
+  	return (
+  		<React.Fragment>
+  			{renderPerson}
+  			<button onClick={this.toggleHandler}>gokul</button>
+  		</React.Fragment>
+  	)
+  }   
 }
 var app =(
-  <React.Fragment>
-    <Demo name="rama" />
-    <Demo name="murthi" age="20" />
-  </React.Fragment>
+	<React.Fragment>
+		<Demo name="rama" />
+	</React.Fragment>
 )
-ReactDOM.render(app, document.getElementById('app'));
+ReactDOM.render(app, document.getElementById('app'))
 
 /*Node	 Browser
  Node doesn’t have a predefined “window” object cause it doesn’t have a window to draw anything.

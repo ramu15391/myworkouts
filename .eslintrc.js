@@ -12,6 +12,7 @@ module.exports = {
         },
         "sourceType": "module"
     },
+    "parser":"babel-eslint",
     "plugins": [
         "react"
     ],
@@ -39,6 +40,7 @@ module.exports = {
         "semi-spacing": [
             "error",
             {"before":false,"after":true}
-        ]
+        ],
+        "arrow-parens": ["error", "as-needed"]
     }
 };

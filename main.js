@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Layout  from './components/Layout/Layout'
+import Layout  from './component/Layout/Layout'
 import AppSub from './AppSub/AppSub'
-
+import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder'
 
 class Demo extends React.Component {
 	constructor(){
@@ -58,10 +58,11 @@ class Demo extends React.Component {
   	return (
   		<React.Fragment>
   			{renderPerson}
-  			<button onClick={this.toggleHandler}>gokul</button>
-			  <Layout>
-				  <p>test</p>
-			</Layout>
+			  <button onClick={this.toggleHandler}>gokul</button>
+			  <Layout><p>test</p></Layout>
+			  <BurgerBuilder></BurgerBuilder>
+			  
+			
   		</React.Fragment>
   	)
   }   

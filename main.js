@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import Layout  from './component/Layout/Layout'
 import AppSub from './AppSub/AppSub'
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder'
+import BurgerIngredients from './component/Burger/BurgerIngredients/BurgerIngredients'
 
 class Demo extends React.Component {
 	constructor(){
@@ -60,7 +61,7 @@ class Demo extends React.Component {
   			{renderPerson}
 			  <button onClick={this.toggleHandler}>gokul</button>
 			  <Layout><p>test</p></Layout>
-			  <BurgerBuilder></BurgerBuilder>
+			  <BurgerBuilder><BurgerIngredients type="BreadBottom"/></BurgerBuilder>
 			  
 			
   		</React.Fragment>

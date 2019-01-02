@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Layout  from './components/Layout/Layout'
 import AppSub from './AppSub/AppSub'
+
 
 class Demo extends React.Component {
 	constructor(){
@@ -35,8 +37,8 @@ class Demo extends React.Component {
 		)
 	}
   toggleHandler = () => {
-	  const status = this.state.status;
-	  console.log(status);
+	  const status = this.state.status
+	  console.log(status)
   	this.setState({status: !status})
   }
   render() { 
@@ -46,6 +48,9 @@ class Demo extends React.Component {
   		<React.Fragment>
   			{renderPerson}
   			<button onClick={this.toggleHandler}>gokul</button>
+			  <Layout>
+				  <p>test</p>
+			</Layout>
   		</React.Fragment>
   	)
   }   

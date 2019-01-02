@@ -1,12 +1,12 @@
 import React from 'react'
 
-const subelement = props => {
+const subelement = (props) => {
 	return(
-		<React.Fragment>
+		<div id={props.id}>
 			<div onClick={props.click} className="name">{props.name}</div>
 			<div className="age">{props.age}</div>
-			<input type='text' onChange={props.change} value={props.name}></input>
-		</React.Fragment>
+            <input type='text' onChange={props.change} value={props.name}></input>
+		</div>
 	)
 }
 // subelement.propTypes = {

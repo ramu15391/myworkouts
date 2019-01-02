@@ -16,7 +16,11 @@ class Demo extends React.Component {
 			status: false
 		}
 	}
- 
+	removePersonHandler = (index) => {
+		let copyState = [...this.state.person];
+		copyState = copyState.splice(index,1);
+		this.setState({person: copyState})
+	}
 	clickHandler(newname) {
 		this.setState({
 			person:[
@@ -24,25 +28,32 @@ class Demo extends React.Component {
 				{id:'name2', name:'ganesh', age:'27'},
 				{id:'name3', name:'sai', age:'27'}
 			]
-		}
-		)
+		})
 	}
-	changeHandler(event) {
-		this.setState({
-			person:[
-				{ name: event.target.value, age:'27' },
-				{ name:'ganesh', age:'27' }
-			]
-		}
-		)
+	changeHandler = (event, id) => {
+		let changeElemIndex = this.state.person.findIndex(personEl => {	console.log("id  ",id); return (personEl.id === id )})
+		let changePersonEl = null//...this.state.person[changeElemIndex];
+		changePersonEl = Object.assign({}, this.state.person[changeElemIndex]); 
+		console.log("this.state.person ",this.state.person);
+		changePersonEl.name = event.target.value;
+		console.log("changePersonEl ",changePersonEl);
+		const copyState = [...this.state.person];
+		copyState[changeElemIndex] = changePersonEl;
+		this.setState({person: copyState})
 	}
   toggleHandler = () => {
-	  const status = this.state.status
-	  console.log(status)
+	  const status = this.state.status;
+	  console.log(status);
   	this.setState({status: !status})
   }
   render() { 
-  	const renderPerson = this.state.person.map(personEl => (<AppSub change={this.changeHandler.bind(this)} name={personEl.name} age= {personEl.age} click={this.clickHandler.bind(this,'AR')}></AppSub>) )
+	let renderPerson = null;
+	if(this.state.status){
+		renderPerson = this.state.person.map((personEl,index) => (
+			<AppSub change={() => this.changeHandler(event,personEl.id)} key={personEl.id} name={personEl.name} age= {personEl.age} click={() => this.removePersonHandler(index)}></AppSub>) 
+		);		
+	}
+	  
     
   	return (
   		<React.Fragment>

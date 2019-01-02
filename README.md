@@ -1,5 +1,50 @@
 # myWorkouts
 
+constructor()
+componentwillmount
+render()
+componentdidmount()
+
+### componentwillunmount:
+when the component is removed fro dom triggered.
+
+## Component life cycle update (triggered by parent) :-
+
+## tiggered by external - recieve props
+
+
+### componentwillrecieveprops(props):
+child component recieve props(state in parent component) from parent synced with child component state.
+
+### shouldcomponentupdate(upcoming props, upcoming state) -> decide whether the update should happen or not based on retun (true || false)
+
+### componentwillupdate(upcoming props, upcoming state) 
+sync state and props. better place to sync instead of componentwillrecieveprops, because here we are very sure abt updating the state & props. efforts & resources wasted bcoz we are unsure of updating in componentwillrecieveprops stage.
+
+### render() - structure jsx 
+
+### update child component props
+
+### componentdidupdate - dont update state, which trigger re-render
+
+2. ## tiggered by internal - no props, due to internal state update
+
+### shouldcomponentupdate(upcoming props, upcoming state) -> decide whether the update should happen or not based on retun (true || false)
+
+### componentwillupdate(upcoming props, upcoming state) 
+sync state and props. better place to sync instead of componentwillrecieveprops, because here we are very sure abt updating the state & props. efforts & resources wasted bcoz we are unsure of updating in componentwillrecieveprops stage.
+
+### render() - structure jsx 
+
+### update child component props
+
+### componentdidupdate - dont update state, which trigger re-render
+
+
+
+## css module
+*[css modules](https://blog.pusher.com/css-modules-react/)
+https://reactjs.org/docs/error-boundaries.html
 ##  semantic version
 * [semantic version](https://semver.org/)
 
@@ -293,6 +338,9 @@ exports.addUser = function(username, password, address, phone, email, res, callb
 
  #Babel 
 
+
  * Babel will look for a .babelrc in the current directory of the file being transpiled. If one does not exist, it will travel up the directory tree until it finds either a .babelrc, or a package.json with a "babel": {} hash within.
 
 * Use "babelrc": false in options to stop lookup behavior, or provide the --no-babelrc CLI flag.
+
+[Setup an ssh key] (https://confluence.atlassian.com/bitbucket/set-up-an-ssh-key-728138079.html)

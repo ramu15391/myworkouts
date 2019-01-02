@@ -18,6 +18,16 @@ var config = {
 					plugins: ['transform-decorators-legacy','transform-class-properties' ],
 					presets: ['es2015', 'react'],
 				}
+			},
+			{
+				test: /\.css$/,
+        		//use: ['style-loader', 'css-loader'],
+				loader: require.resolve('css-loader'),
+				options: {
+				  importLoaders: 1,
+				  modules: true,
+				  localIdentName: "[name]__[local]___[hash:base64:5]"  
+				},
 			}
 		]
 	}

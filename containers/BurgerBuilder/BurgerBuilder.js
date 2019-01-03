@@ -4,15 +4,17 @@ import Burger from '../../component/Burger/Burger'
 
 class BurgerBuilder extends React.Component{
     state = {
-    	'Cheese': 1,
-    	'Meat' : 2,
-    	'Bacon': 1
+        ingredients:{
+            'Cheese': 1,
+            'Meat' : 2,
+            'Bacon': 1
+        }
     }
     render(){
     	return(
     		<Aux>
     			<div>Burger Contents</div>
-    			<Burger ingredients={ this.state }></Burger>
+    			<Burger ingredients={ this.state.ingredients }></Burger>
     		</Aux>
     	)
     }

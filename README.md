@@ -347,3 +347,39 @@ exports.addUser = function(username, password, address, phone, email, res, callb
 * Use "babelrc": false in options to stop lookup behavior, or provide the --no-babelrc CLI flag.
 
 [Setup an ssh key] (https://confluence.atlassian.com/bitbucket/set-up-an-ssh-key-728138079.html)
+
+VS COde Plugin Config:- 
+
+
+Install Node,Yarn,make[mingw]
+Add their bin paths to path
+
+Errors Faced :
+1) self signed certificate in certificate chain during ‘yarn install --ignore-engines’
+Resolution : 
+yarn config set "strict-ssl" false
+
+2) 
+
+To install all the vs code extensions in one shot
+
+- In vscode file->preferences->settings
+Add the below line in user settings JSON 
+"http.proxyStrictSSL": false
+- hit ctrl+`  to open the command prompt, then copy paste the below code to the terminal
+
+code --install-extension akamud.vscode-theme-onelight
+code --install-extension dbaeumer.vscode-eslint
+code --install-extension dzannotti.vscode-babel-coloring
+code --install-extension mgmcdermott.vscode-language-babel
+code --install-extension mikestead.dotenv
+code --install-extension ms-vscode.typescript-javascript-grammar
+code --install-extension streetsidesoftware.code-spell-checker
+code --install-extension editorconfig.editorconfig
+code --install-extension eamodio.gitlens
+code --install-extension kumar-harsh.graphql-for-vscode
+code --install-extension zhuangtongfa.material-theme
+code --install-extension esbenp.prettier-vscode
+code --install-extension wayou.vscode-todo-highlight
+code --install-extension eg2.tslint
+code --install-extension jpoissonnier.vscode-styled-comp

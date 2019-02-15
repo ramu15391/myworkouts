@@ -4,6 +4,9 @@ import Layout  from './component/Layout/Layout'
 import AppSub from './AppSub/AppSub'
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder'
 import BurgerIngredients from './component/Burger/BurgerIngredients/BurgerIngredients'
+import { MobxDemo } from './state'
+import MediaCarousel from './Carousel'
+
 
 class Demo extends React.Component {
 	constructor(){
@@ -17,11 +20,8 @@ class Demo extends React.Component {
 			status: false
 		}
 	}
-	removePersonHandler = (index) => {
-		let copyState = [...this.state.person];
-		copyState = copyState.splice(index,1);
-		this.setState({person: copyState})
-	}
+	mobxDemo = new MobxDemo()
+	
 	clickHandler(newname) {
 		this.setState({
 			person:[
@@ -31,39 +31,32 @@ class Demo extends React.Component {
 			]
 		})
 	}
-	changeHandler = (event, id) => {
-		let changeElemIndex = this.state.person.findIndex(personEl => {	console.log("id  ",id); return (personEl.id === id )})
-		let changePersonEl = null//...this.state.person[changeElemIndex];
-		changePersonEl = Object.assign({}, this.state.person[changeElemIndex]); 
-		console.log("this.state.person ",this.state.person);
-		changePersonEl.name = event.target.value;
-		console.log("changePersonEl ",changePersonEl);
-		const copyState = [...this.state.person];
-		copyState[changeElemIndex] = changePersonEl;
-		this.setState({person: copyState})
-	}
   toggleHandler = () => {
 	  const status = this.state.status;
 	  console.log(status);
   	this.setState({status: !status})
   }
-  render() { 
-	let renderPerson = null;
-	if(this.state.status){
-		renderPerson = this.state.person.map((personEl,index) => (
-			<AppSub change={() => this.changeHandler(event,personEl.id)} key={personEl.id} name={personEl.name} age= {personEl.age} click={() => this.removePersonHandler(index)}></AppSub>) 
-		);		
+	
+	getKeyValue = (e) =>{
+		console.log(e.keyCode);
 	}
+  render() { 
+  	let renderPerson = null;
+
+  	console.log("mobx!!!", this.mobxDemo.isData)
+  	if(this.state.status){
+  		renderPerson = this.state.person.map((personEl,index) => (
+  			<AppSub key={personEl.id} name={personEl.name} age= {personEl.age}></AppSub>) 
+  		);		
+  	}
 	  
     
   	return (
   		<React.Fragment>
   			{renderPerson}
-			  <button onClick={this.toggleHandler}>gokul</button>
-			  <Layout><p>test</p></Layout>
-			  <BurgerBuilder><BurgerIngredients type="BreadBottom"/></BurgerBuilder>
-			  
-			
+				<div tabIndex="1" onClick={this.toggleHandler}>gokul</div>
+				<div  tabIndex={1} onKeyDown ={this.getKeyValue}>snake</div>
+				<MediaCarousel/>
   		</React.Fragment>
   	)
   }   
@@ -75,7 +68,7 @@ var app =(
 )
 ReactDOM.render(app, document.getElementById('app'))
 
-/*Node	 Browser
+/*Node	 Browser 			  <Layout><p>test</p></Layout> <BurgerBuilder><BurgerIngredients type="BreadBottom"/></BurgerBuilder>
  Node doesn’t have a predefined “window” object cause it doesn’t have a window to draw anything.
  “window” is a predefined global object which has functions and attributes, that have to deal with window that has been drawn.
 

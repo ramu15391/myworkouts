@@ -1,4 +1,88 @@
 # myWorkouts
+mobile
+    min-height: calc(100vh - 117px);
+    display: flex;
+    flex-direction: column;
+    
+    min-height: unset;
+    flex-grow: 1;
+
+
+    desktop
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 134px);
+    
+    min-height: unset;
+    flex-grow: 1;
+
+
+(max-width: 1023px)
+    min-height: calc(100vh - 90px);
+    display: flex;
+    flex-direction: column;
+
+    min-height: unset;
+    flex-grow: 1;
+import React from 'react'
+import { Footer as BaseFooter, FooterProps } from 'src/ui'
+import { oneRouter } from '@skava/router'
+import { observable, observe } from 'xmobx/mobx'
+import { observer } from 'xmobx/mobx-react'
+import { copyrightData, listOfSocialIcons, listOfLinks, poweredByData, logoIcon } from './fixture'
+import { oneProductListContainer } from 'state/catalog/containers/ProductList'
+import { styled } from 'styleh-components'
+const StyledBaseFooter = styled(BaseFooter)`
+  ${props =>
+    props.EmptyListFlag &&
+    styled.css`
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    `};
+`
+@observer
+class Footer extends React.Component<FooterProps> {
+  static defaultProps = {
+    copyrightData,
+    listOfSocialIcons,
+    listOfLinks,
+    poweredByData,
+    logoIcon,
+    breed: process.env.BUSINESS_RELATIONSHIP === 'B2C' ? '' : 'pro',
+    count: 0,
+  }
+  @observable productCount = oneProductListContainer.productContainer.productCount
+  componentDidMount() {
+    this.disposer = observe(oneProductListContainer, 'productContainer', () => {
+      this.productCount = oneProductListContainer.productContainer.productCount
+      this.forceUpdate()
+    })
+  }
+  componentWillmount() {
+    if (isFunction(this.disposer)) {
+      this.disposer()
+    }
+  }
+  render() {
+    const props = { ...this.props }
+    const emptyListFlag = this.productCount
+    let isEmptyProductList = false
+    const isPLP = oneRouter.has('category/') || oneRouter.has('search/')
+    isEmptyProductList = emptyListFlag <= 0 && isPLP ? true : false
+    console.log('test isEmptyProductList', isEmptyProductList)
+    return <StyledBaseFooter EmptyListFlag={isEmptyProductList} {...props} />
+  }
+}
+export { Footer }
+export default Footer
+
+vertical Alignment Flex sticky footer
+https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/
+
+
+https://www.flaticon.com/search?word=tick
+https://css-tricks.com/accessible-svgs/
 https://medium.com/a-beginners-guide-for-webpack-2/webpack-loaders-css-and-sass-2cc0079b5b3a
 https://blog.pusher.com/css-modules-react/
 https://mdbootstrap.com/docs/react/components/buttons/
@@ -383,3 +467,109 @@ code --install-extension esbenp.prettier-vscode
 code --install-extension wayou.vscode-todo-highlight
 code --install-extension eg2.tslint
 code --install-extension jpoissonnier.vscode-styled-comp
+
+
+
+
+Day1:
+    Makefile : https://gist.github.com/isaacs/62a2d1825d04437c6f08
+    Command Line Options: https://nodejs.org/api/cli.html
+    Markdown CheatSheet: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+    Semantic versioning: https://semver.org/
+    React: https://github.com/facebook/react/tree/v16.4.0
+    JSON in JS: https://github.com/douglascrockford/JSON-js
+    Definitely Typed: http://definitelytyped.org/
+    JSX: https://reactjs.org/docs/introducing-jsx.html
+    npm: https://www.npmjs.com/package/fosho
+
+Day2:
+    monomorphism: https://mrale.ph/blog/2015/01/11/whats-up-with-monomorphism.html
+    chrome V8: https://developers.google.com/v8/
+    Typescript React Starter: https://github.com/Microsoft/TypeScript-React-Starter#typescript-react-starter
+    ES6: http://stack.formidable.com/es6-interactive-guide/#/
+    Ignoring Files: https://help.github.com/ignore-files/
+
+    // ** means "anything - recursively" - it is a glob
+    // * means anything, match once, like a regexp
+
+    node glob: https://github.com/isaacs/node-glob
+    JS scoping and hoisting: http://www.adequatelygood.com/JavaScript-Scoping-and-Hoisting.html
+    JS Hoisting: https://scotch.io/tutorials/understanding-hoisting-in-javascript
+    JS Book series: https://github.com/getify/You-Dont-Know-JS
+    node js: https://nodejs.org/api/process.html
+    dotenv: https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv
+    tslint: https://marketplace.visualstudio.com/items?itemName=eg2.tslint
+    replaceDefine: https://github.com/fluents/chain-able/wiki/Build-process#replacedefine
+    typescript Generics: https://www.typescriptlang.org/docs/handbook/generics.html
+    Generics- TS deep dive: https://basarat.gitbooks.io/typescript/docs/types/generics.html
+
+Day3:
+    useful aretecode links code sandbox:
+        https://codesandbox.io/s/xo1m2w0p4z
+        https://codesandbox.io/s/ol0xn2knj6
+        https://codesandbox.io/s/m59qyon0y
+        https://codesandbox.io/s/j3rq74vrmv
+
+    ^ 4 ways to do the same thing using mobx
+
+    React Component Patterns with Typescript 2.8:
+        https://levelup.gitconnected.com/ultimate-react-component-patterns-with-typescript-2-8-82990c516935
+
+
+Day2: session --> https://docs.google.com/document/d/1CjrVvlefQlaIDzRyA2MLG1h61aUNUsKlWmh4FoOiYVc/edit#
+    files > preference > settings
+
+    local
+        can create our own settings json file inside .vscode folder or by using workspace settings
+
+ViewPort
+
+width=device-width
+This means, we are telling to the browser “my website adapts to your device width”.
+
+initial-scale
+This defines the scale of the website, This parameter sets the initial zoom level, which means 1 CSS pixel is equal to 1 viewport pixel. This parameter help when you're changing orientation, or preventing default zooming. Without this parameter, responsive site won't work.
+
+maximum-scale
+Maximum-scale defines the maximum zoom. When you access the website, top priority is maximum-scale=1, and it won’t allow the user to zoom.
+
+minimum-scale
+Minimum-scale defines the minimum zoom. This works the same as above, but it defines the minimum scale. This is useful, when maximum-scale is large, and you want to set minimum-scale.
+
+user-scalable
+User-scalable assigned to 1.0 means the website is allowing the user to zoom in or zoom out.
+
+But if you assign it to user-scalable=no, it means the website is not allowing the user to zoom in or zoom out.
+
+
+Cahce-Manifest: - https://www.html5rocks.com/en/tutorials/appcache/beginner/
+
+Offline browsing - users can navigate your full site when they're offline
+Speed - resources come straight from disk, no trip to the network.
+Resilience - if your site goes down for "maintenance" (as in, someone accidentally breaks everything), your users will get the offline experience
+
+
+Cache manifest file:-
+
+  The cache manifest file is a simple text file that lists the resources the browser should cache for offline access.
+
+Referencing a manifest file
+To enable the application cache for an app, include the manifest attribute on the document's html tag:
+
+<html manifest="example.appcache">
+  ...
+</html>
+
+  The manifest attribute should be included on every page of your web application that you want cached. The browser does not cache a page if it does not contain the manifest attribute (unless it is explicitly listed in the manifest file itself. This means that any page the user navigates to that includes a manifest will be implicitly added to the application cache. Thus, there's no need to list every page in your manifest. If a page points to a manifest, there's no way to prevent this page being cached.
+
+Note: "/page-url/", "/page-url/?something", "/page-url/?something-else" are considered separate pages. If they link to the manifest, they will all be implicitly cached separately. Because of this and other gotchas, AppCache best used on apps with one URL.
+
+  You can see the urls that are controlled by the application cache by visiting chrome://appcache-internals/ in Chrome. 
+
+  The manifest attribute can point to an absolute URL or relative path, but an absolute URL must be under the same origin as the web application. A manifest file can have any file extension, but needs to be served with the correct mime-type (see below).
+
+<html manifest="http://www.example.com/example.mf">
+  ...
+</html>
+A manifest file must be served with the mime-type text/cache-manifest.
+
